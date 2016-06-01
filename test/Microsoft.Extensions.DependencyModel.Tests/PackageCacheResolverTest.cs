@@ -55,15 +55,10 @@ namespace Microsoft.Extensions.DependencyModel.Tests
         [Fact]
         public void ChecksHashFile()
         {
-            var packagePath = Path.Combine(
-                CachePath,
-                F.DefaultPackageName.ToLowerInvariant(),
-                F.DefaultVersion.ToLowerInvariant());
+            var packagePath = Path.Combine(CachePath, F.DefaultPackageName, F.DefaultVersion);
             var fileSystem = FileSystemMockBuilder.Create()
                 .AddFile(
-                    Path.Combine(
-                        packagePath,
-                        $"{F.DefaultPackageName.ToLowerInvariant()}.{F.DefaultVersion.ToLowerInvariant()}.nupkg.{F.DefaultHashAlgoritm}"),
+                    Path.Combine(packagePath, $"{F.DefaultPackageName}.{F.DefaultVersion}.nupkg.{F.DefaultHashAlgoritm}"),
                     "WRONGHASH"
                 )
                 .AddFiles(packagePath, F.DefaultAssemblies)
@@ -79,15 +74,10 @@ namespace Microsoft.Extensions.DependencyModel.Tests
         [Fact]
         public void ResolvesAllAssemblies()
         {
-            var packagePath = Path.Combine(
-                CachePath,
-                F.DefaultPackageName.ToLowerInvariant(),
-                F.DefaultVersion.ToLowerInvariant());
+            var packagePath = Path.Combine(CachePath, F.DefaultPackageName, F.DefaultVersion);
             var fileSystem = FileSystemMockBuilder.Create()
                 .AddFile(
-                    Path.Combine(
-                        packagePath,
-                        $"{F.DefaultPackageName.ToLowerInvariant()}.{F.DefaultVersion.ToLowerInvariant()}.nupkg.{F.DefaultHashAlgoritm}"),
+                    Path.Combine(packagePath, $"{F.DefaultPackageName}.{F.DefaultVersion}.nupkg.{F.DefaultHashAlgoritm}"),
                     F.DefaultHashValue
                 )
                 .AddFiles(packagePath, F.TwoAssemblies)
@@ -108,15 +98,10 @@ namespace Microsoft.Extensions.DependencyModel.Tests
         [Fact]
         public void FailsWhenOneOfAssembliesNotFound()
         {
-            var packagePath = Path.Combine(
-                CachePath,
-                F.DefaultPackageName.ToLowerInvariant(),
-                F.DefaultVersion.ToLowerInvariant());
+            var packagePath = Path.Combine(CachePath, F.DefaultPackageName, F.DefaultVersion);
             var fileSystem = FileSystemMockBuilder.Create()
                 .AddFile(
-                    Path.Combine(
-                        packagePath,
-                        $"{F.DefaultPackageName.ToLowerInvariant()}.{F.DefaultVersion.ToLowerInvariant()}.nupkg.{F.DefaultHashAlgoritm}"),
+                    Path.Combine(packagePath, $"{F.DefaultPackageName}.{F.DefaultVersion}.nupkg.{F.DefaultHashAlgoritm}"),
                     F.DefaultHashValue
                 )
                 .AddFiles(packagePath, F.DefaultAssemblyPath)

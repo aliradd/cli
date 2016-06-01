@@ -16,8 +16,6 @@ namespace Microsoft.DotNet.ProjectModel.Graph
 
         public string Sha512 { get; set; }
 
-        public string Path { get; set; }
-
         public IList<string> Files { get; set; } = new List<string>();
     }
 }
